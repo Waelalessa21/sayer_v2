@@ -1,0 +1,123 @@
+name: sayer_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+
+  
+  flutter:
+    sdk: flutter
+
+  
+  flutter_localizations:
+    sdk: flutter
+
+  #This package is used to create a splash screen for the app  
+  flutter_native_splash: ^2.4.6
+  #This package is used to create a responsive screen accross all devices
+  flutter_screenutil: ^5.9.3
+  #This package is used to get the dependencies
+  get: ^4.7.2
+  #dependency injection package
+  get_it: ^8.2.0
+  #A package to provide url functionality
+  url_launcher: ^6.3.2
+  #This package is used to get the remote config values
+  firebase_remote_config: ^6.0.2
+  #This package is used to manage the state of the app
+  flutter_bloc: ^9.1.1
+  #This package is used to make the requests to the API
+  dio: ^5.9.0
+  #Helper package to log the requests to the API and print it in debug mode
+  pretty_dio_logger: ^1.4.0
+  #This package is used to generate the freezed code
+  freezed: ^3.2.3
+  #Provice the @ needed in order to use the freezed package
+  freezed_annotation: ^3.1.0
+  #This package is used to generate the json code
+  json_annotation: ^4.9.0
+  #provide bloc functionality for flutter bloc
+  bloc: ^9.0.1
+  #This package is used to generate the retrofit code
+  retrofit: ^4.7.2
+  #more icons
+  iconsax: ^0.0.8
+  #Package provide lottie animation imported from lottie website in assets
+  lottie: ^3.3.1
+  #Onboarding animation package
+  animated_introduction: ^1.0.4
+  #Provide a notification message in the app
+  fluttertoast: ^9.0.0
+  #Provide fade animations
+  animate_do: ^4.2.0
+  #Provide a OTP code fields
+  pin_code_fields: ^8.0.1
+  #Provide a firebase core package
+  firebase_core: ^4.1.1
+  #Provide a shared preferences package
+  shared_preferences: ^2.5.3
+  #Provide a flutter secure storage package
+  flutter_secure_storage: ^9.2.4
+  #Provide a firebase auth package
+  firebase_auth: ^6.1.0
+  #Provide a cloud firestore package
+  cloud_firestore: ^6.0.2
+  #Provide a restart app service {needed for the update }
+  restart_app: ^1.3.2
+  #Provide app info as for version {needed for the update checker}
+  package_info_plus: ^9.0.0
+  #Provide a flutter local notifications {inside the app notification}
+  flutter_local_notifications: ^19.4.2
+  #Provide a http connection and api methods {get, post, put, delete}
+  http: ^1.5.0
+  #Provide a firebase messaging {needed for the push notifications}
+  firebase_messaging: ^16.0.2
+  #Provide a intl package {needed for the date formatting}
+  intl: ^0.20.2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  #Package used to run a command to generate all auto generated code
+  build_runner: ^2.8.0
+  #Package used to generate json serialization code
+  json_serializable: ^6.8.0
+  #Package used to generate retrofit code
+  retrofit_generator: ^10.0.5
+
+flutter:
+  uses-material-design: true
+
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/lottie/
+  
+  fonts:
+    - family: sayerNewFont
+      fonts:
+        - asset: assets/fonts/TheYearofHandicrafts-Regular.otf
+          weight: 400
+        - asset: assets/fonts/TheYearofHandicrafts-Medium.otf
+          weight: 500
+        - asset: assets/fonts/TheYearofHandicrafts-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/TheYearofHandicrafts-Bold.otf
+          weight: 700
+        - asset: assets/fonts/TheYearofHandicrafts-Black.otf
+          weight: 900
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
+  background_image: assets/images/splash.png
+
