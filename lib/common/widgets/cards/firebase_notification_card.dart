@@ -15,7 +15,7 @@ class FireBaeNotificationCard extends StatefulWidget {
     required this.title,
     required this.subtitle,
     required this.time,
-    this.logo = "assets/logos/Sayer_Logo.png",
+    this.logo = "assets/images/Sayer_Logo.png",
   });
 
   @override
@@ -77,7 +77,7 @@ class _FireBaeNotificationCardState extends State<FireBaeNotificationCard>
                     child: RoundedImage(
                       backgroundColor: Colors.transparent,
                       fit: BoxFit.fill,
-                      imagmeUrl: "assets/logos/Sayer_Logo.png",
+                      imagmeUrl: "assets/images/Sayer_Logo.png",
                       isNetworkImage: false,
                       applyImageRadius: true,
                     ),
@@ -186,7 +186,7 @@ class test extends StatelessWidget {
                         child: RoundedImage(
                           backgroundColor: Colors.transparent,
                           fit: BoxFit.fill,
-                          imagmeUrl: "assets/logos/Sayer_Logo.png",
+                          imagmeUrl: "assets/images/Sayer_Logo.png",
                           isNetworkImage: false,
                           applyImageRadius: true,
                         ),

@@ -99,7 +99,7 @@ class _ListOfUserOrdersState extends State<ListOfUserOrders> {
                           child: NotificationCard(
                             title: title,
                             subtitle: subtitle,
-                            imagePath: 'assets/logos/Sayer_Logo.png',
+                            imagePath: 'assets/images/Sayer_Logo.png',
                           ),
                         );
                       },
@@ -126,7 +126,7 @@ class _ListOfUserOrdersState extends State<ListOfUserOrders> {
                         child: NotificationCard(
                           title: title,
                           subtitle: subtitle,
-                          imagePath: 'assets/logos/Sayer_Logo.png',
+                          imagePath: 'assets/images/Sayer_Logo.png',
                         ),
                       );
                     },

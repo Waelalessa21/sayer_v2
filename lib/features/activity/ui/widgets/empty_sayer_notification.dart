@@ -96,7 +96,7 @@ class _EmptySayerNotificationState extends State<EmptySayerNotification>
                 animate: _showAnimation,
               ),
               Image.asset(
-                "assets/logos/Sayer_Logo.png",
+                "assets/images/Sayer_Logo.png",
                 width: MediaQuery.of(context).size.width * 0.15,
               ),
               ...dealerImages(),
@@ -122,7 +122,7 @@ class _EmptySayerNotificationState extends State<EmptySayerNotification>
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Text(
-                "في ساير، نحرص على أن نوفر لك أفضل العروض بشكل حصري، لتتمتع بتجربة  مميزة وفرص لا تجدها في أي مكان آخر.",
+                "في ســاير، نحرص على أن نوفر لك أفضل العروض بشكل حصري، لتتمتع بتجربة  مميزة وفرص لا تجدها في أي مكان آخر.",
                 style: TextStyle(
                   color: AppColors.buttonSecondary,
                   fontSize: 16.sp,
@@ -141,35 +141,35 @@ class _EmptySayerNotificationState extends State<EmptySayerNotification>
   List dealerImages() {
     return [
       showDelaerImg(
-        "assets/images/banners/notification1.png",
+        "assets/images/notification1.png",
         90.h,
         40.w,
         Alignment.topLeft,
         index: 0,
       ),
       showDelaerImg(
-        "assets/images/banners/notification2.png",
+        "assets/images/notification2.png",
         90.h,
         40.w,
         Alignment.topRight,
         index: 1,
       ),
       showDelaerImg(
-        "assets/images/banners/notification3.png",
+        "assets/images/notification3.png",
         40.h,
         10.w,
         Alignment.topLeft,
         index: 2,
       ),
       showDelaerImg(
-        "assets/images/banners/notification4.png",
+        "assets/images/notification4.png",
         10.h,
         120.w,
         Alignment.topRight,
         index: 3,
       ),
       showDelaerImg(
-        "assets/images/banners/notification5.png",
+        "assets/images/notification5.png",
         25.h,
         20.w,
         Alignment.topRight,
