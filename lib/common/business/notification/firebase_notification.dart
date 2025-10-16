@@ -126,7 +126,7 @@ Future<void> loadNotifications() async {
           title: data['title'],
           subtitle: data['subtitle'],
           time: displayTime,
-          logo: "assets/logos/Sayer_Logo.png",
+          logo: "assets/images/Sayer_Logo.png",
         ),
       );
     }
