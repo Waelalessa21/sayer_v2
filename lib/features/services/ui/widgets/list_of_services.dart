@@ -12,7 +12,7 @@ class ServicesCardList extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.grey.shade100, width: 1),
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       padding: EdgeInsets.all(AppSizes.sm.sp),
       child: Column(

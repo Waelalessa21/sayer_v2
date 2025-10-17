@@ -12,9 +12,8 @@ class LoginRepo {
     String phoneNumber,
   ) async {
     try {
-      final response = await _loginService.generateOtp(
-        LoginModel(phone: phoneNumber),
-      );
+      final loginModel = LoginModel(phone: phoneNumber);
+      final response = await _loginService.generateOtp(loginModel);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ApiErrorHandler.handle(error));

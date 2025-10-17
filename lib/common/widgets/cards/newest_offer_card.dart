@@ -12,9 +12,10 @@ import 'package:sayer_app/common/widgets/custom_shape/circular_icon.dart';
 import 'package:sayer_app/common/widgets/custom_shape/rounded_image.dart';
 import 'package:sayer_app/common/widgets/popup/guest_notification.dart';
 import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
+import 'package:sayer_app/common/routing/routes.dart';
+import 'package:sayer_app/common/helpers/extension.dart';
 import 'package:intl/intl.dart';
 
-///design of the card used in home screen to show the latest/newest offers
 class NewestOfferCard extends StatelessWidget {
   final String brandName, offerName;
   final String carName;
@@ -47,7 +48,7 @@ class NewestOfferCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         isLoggedInUser
-            ? print('carOfferData: $carOfferData')
+            ? context.pushNamed(Routes.carDetails, arguments: carOfferData)
             : showGuestToastMessage(
                 context,
                 "assets/icons/question.png",
@@ -83,7 +84,7 @@ class NewestOfferCard extends StatelessWidget {
               ),
             ),
           Padding(
-            padding: EdgeInsets.only(right: offers ? 33.sp : 0.sp),
+            padding: EdgeInsets.only(right: offers ? 40.sp : 0.sp),
             child: AppContainer(
               boxShadow: [
                 BoxShadow(
@@ -153,7 +154,7 @@ class NewestOfferCard extends StatelessWidget {
                     child: RoundedImage(
                       backgroundColor: Colors.transparent,
                       fit: BoxFit.contain,
-                      imagmeUrl: imageUrl,
+                      imageUrl: imageUrl,
                       isNetworkImage: isNetwork,
                       applyImageRadius: true,
                     ),

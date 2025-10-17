@@ -44,7 +44,10 @@ class SuggestionBottomSheetState extends State<SuggestionBottomSheet> {
               MediaQuery.of(context).viewInsets.bottom + AppSizes.defaultSpace,
         ),
         child: Container(
-          decoration: BoxDecoration(color: AppColors.lightContainer),
+          decoration: BoxDecoration(
+            color: AppColors.lightContainer,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10.r)),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -109,7 +112,7 @@ class SuggestionBottomSheetState extends State<SuggestionBottomSheet> {
       padding: EdgeInsets.all(8.sp),
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.primary.withOpacity(0.2)),
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: GestureDetector(
         onTap: () {

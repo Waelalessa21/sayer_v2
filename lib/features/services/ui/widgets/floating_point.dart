@@ -93,8 +93,8 @@ class FloatingPointState extends State<FloatingPoint> {
                                       isDismissible: true,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20.0),
-                                          topRight: Radius.circular(20.0),
+                                          topLeft: Radius.circular(10.r),
+                                          topRight: Radius.circular(10.r),
                                         ),
                                       ),
                                       builder: (BuildContext context) {
@@ -127,8 +127,8 @@ class FloatingPointState extends State<FloatingPoint> {
                                       isDismissible: true,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20.0),
-                                          topRight: Radius.circular(20.0),
+                                          topLeft: Radius.circular(10.r),
+                                          topRight: Radius.circular(10.r),
                                         ),
                                       ),
                                       builder: (BuildContext context) {
@@ -141,9 +141,10 @@ class FloatingPointState extends State<FloatingPoint> {
                                         );
                                       },
                                     );
-                                  } else {
+                                  } else if (label == 'طلب') {
                                     showModalBottomSheet(
-                                      backgroundColor: AppColors.lightGrey,
+                                      backgroundColor: Colors.transparent,
+                                      useRootNavigator: true,
                                       context: context,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.vertical(
@@ -161,7 +162,7 @@ class FloatingPointState extends State<FloatingPoint> {
                                           child: BlocProvider(
                                             create: (context) => SupportCubit(),
                                             child: SuggestionsPopUp(
-                                              where: 'Floating Point',
+                                              where: 'Tamer',
                                             ),
                                           ),
                                         );

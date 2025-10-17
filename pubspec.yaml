@@ -78,6 +78,8 @@ dependencies:
   firebase_messaging: ^16.0.2
   #Provide a intl package {needed for the date formatting}
   intl: ^0.20.2
+  #Provide a flutter launcher icons {Android}
+  flutter_launcher_icons: ^0.14.4
 
 
 dev_dependencies:
@@ -121,3 +123,10 @@ flutter_native_splash:
   fullscreen: true
   background_image: assets/images/splash.png
 
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/Sayer_Logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/Sayer_Logo.png"

@@ -117,11 +117,11 @@ class SayerFloatingPoingState extends State<SayerFloatingPoing> {
                                                       BorderRadius.only(
                                                         topLeft:
                                                             Radius.circular(
-                                                              20.0.r,
+                                                              10.r,
                                                             ),
                                                         topRight:
                                                             Radius.circular(
-                                                              20.0,
+                                                              10.r,
                                                             ),
                                                       ),
                                                 ),
@@ -160,11 +160,11 @@ class SayerFloatingPoingState extends State<SayerFloatingPoing> {
                                                       BorderRadius.only(
                                                         topLeft:
                                                             Radius.circular(
-                                                              20.0.r,
+                                                              10.r,
                                                             ),
                                                         topRight:
                                                             Radius.circular(
-                                                              20.0.r,
+                                                              10.r,
                                                             ),
                                                       ),
                                                 ),
@@ -179,10 +179,11 @@ class SayerFloatingPoingState extends State<SayerFloatingPoing> {
                                                   );
                                                 },
                                               );
-                                            } else {
+                                            } else if (label == 'طلب') {
                                               showModalBottomSheet(
                                                 backgroundColor:
-                                                    AppColors.lightGrey,
+                                                    Colors.transparent,
+                                                useRootNavigator: true,
                                                 context: context,
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
@@ -204,7 +205,7 @@ class SayerFloatingPoingState extends State<SayerFloatingPoing> {
                                                       create: (context) =>
                                                           SupportCubit(),
                                                       child: SuggestionsPopUp(
-                                                        where: 'Sayer Service',
+                                                        where: 'Tamer',
                                                       ),
                                                     ),
                                                   );

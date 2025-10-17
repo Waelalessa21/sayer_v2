@@ -40,11 +40,11 @@ class OnBoardingOneState extends State<OnBoardingOne> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 30),
+        SizedBox(height: 90.h),
         Stack(
           children: [
             Transform.translate(
-              offset: Offset(0, 180),
+              offset: Offset(0, 140),
               child: Lottie.asset(
                 'assets/lottie/on_boarding_car.json',
                 height: 420.h,
@@ -53,7 +53,7 @@ class OnBoardingOneState extends State<OnBoardingOne> {
             ),
             Positioned(
               top: (140 - (_offset * 100)).clamp(0.0, 140.0),
-              right: (-16 - (_offset * 250)).clamp(-250.0, -16.0),
+              right: 10,
               child: SizedBox(
                 height: (62 - (_offset * 80)).clamp(
                   0.0,
@@ -69,10 +69,10 @@ class OnBoardingOneState extends State<OnBoardingOne> {
               ),
             ),
             Positioned(
-              top: (250 - (_offset * 100)).clamp(0.0, 250.0),
+              top: (220 - (_offset * 100)).clamp(0.0, 250.0),
               right: (160 - (_offset * 100)).clamp(0.0, 160.0),
               child: SizedBox(
-                height: 60,
+                height: 60.h,
                 child: Transform.rotate(
                   angle: (12.65 - (_offset * 0.5)).clamp(0.0, 12.65),
                   child: Opacity(
@@ -98,9 +98,9 @@ class OnBoardingOneState extends State<OnBoardingOne> {
             ),
             Positioned(
               top: 155,
-              left: (19 + (_offset * 250)).clamp(0.0, 250.0),
+              left: (30 + (_offset * 250)).clamp(0.0, 250.0),
               child: SizedBox(
-                height: 65,
+                height: 65.h,
                 child: Transform.rotate(
                   angle: 12.5,
                   child: Opacity(
@@ -119,9 +119,9 @@ class OnBoardingOneState extends State<OnBoardingOne> {
                       ),
                       child: CircleAvatar(
                         backgroundColor: AppColors.grey.withOpacity(0.5),
-                        radius: 22,
+                        radius: 22.r,
                         child: Padding(
-                          padding: const EdgeInsets.all(7.0),
+                          padding: EdgeInsets.all(7.0.sp),
                           child: Image.asset('assets/icons/small_car.png'),
                         ),
                       ),
@@ -134,7 +134,7 @@ class OnBoardingOneState extends State<OnBoardingOne> {
               top: (-5 + (_offset * 100)).clamp(-5.0, 95.0),
               left: (80 + (_offset * 250)).clamp(80.0, 330.0),
               child: SizedBox(
-                height: 65,
+                height: 65.h,
                 child: Transform.rotate(
                   angle: 12.5,
                   child: Opacity(
@@ -153,9 +153,9 @@ class OnBoardingOneState extends State<OnBoardingOne> {
                       ),
                       child: CircleAvatar(
                         backgroundColor: AppColors.grey.withOpacity(0.5),
-                        radius: 15,
+                        radius: 15.r,
                         child: Padding(
-                          padding: const EdgeInsets.all(7.0),
+                          padding: EdgeInsets.all(7.0.sp),
                           child: Image.asset('assets/icons/car_with_ppl.png'),
                         ),
                       ),
@@ -168,7 +168,7 @@ class OnBoardingOneState extends State<OnBoardingOne> {
               top: (230 - (_offset * 100)).clamp(0.0, 230.0),
               left: (290 + (_offset * 250)).clamp(0.0, 540.0),
               child: SizedBox(
-                height: 65,
+                height: 65.h,
                 child: Transform.rotate(
                   angle: 12.5,
                   child: Opacity(
@@ -187,9 +187,9 @@ class OnBoardingOneState extends State<OnBoardingOne> {
                       ),
                       child: CircleAvatar(
                         backgroundColor: AppColors.grey.withOpacity(0.5),
-                        radius: 17,
+                        radius: 17.r,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0.sp),
                           child: Image.asset('assets/icons/percent.png'),
                         ),
                       ),
@@ -202,7 +202,7 @@ class OnBoardingOneState extends State<OnBoardingOne> {
               top: (10 + (_offset * 259)).clamp(10.0, 269.0),
               left: 310,
               child: SizedBox(
-                height: 65,
+                height: 65.h,
                 child: Transform.rotate(
                   angle: 12.3,
                   child: Opacity(
@@ -221,9 +221,9 @@ class OnBoardingOneState extends State<OnBoardingOne> {
                       ),
                       child: CircleAvatar(
                         backgroundColor: AppColors.grey,
-                        radius: 20,
+                        radius: 10.r,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0.sp),
                           child: Image.asset('assets/icons/Pickup.png'),
                         ),
                       ),

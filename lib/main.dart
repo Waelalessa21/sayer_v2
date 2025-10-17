@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sayer_app/common/di/dependency_injection.dart';
+import 'package:sayer_app/common/helpers/http_overrides_helper.dart';
 import 'package:sayer_app/common/helpers/shared_preference.dart';
 import 'package:sayer_app/common/helpers/user_session.dart';
 import 'package:sayer_app/common/networking/dio_factory.dart';
@@ -13,6 +14,8 @@ bool isFirebaseInitialized = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  HttpOverridesHelper.configureHttpOverrides();
 
   try {
     await Firebase.initializeApp(

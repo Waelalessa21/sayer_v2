@@ -120,7 +120,7 @@ class _HomeLayoutState extends State<HomeLayout>
             ),
           ),
           Positioned(
-            top: screenSize.height * 0.21,
+            top: screenSize.height * 0.2,
             left: AppSizes.defaultSpace,
             right: AppSizes.defaultSpace,
             child: IgnorePointer(ignoring: false, child: SmallHomeOffers()),

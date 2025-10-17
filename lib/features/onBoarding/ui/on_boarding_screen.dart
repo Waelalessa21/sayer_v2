@@ -33,8 +33,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         slidePagePadding: EdgeInsets.all(0),
         imageHeightMultiple: 0,
         title: 'اهلًا وسهلًا!',
-        description: 'حياك الله في منصة ساير',
+        description: 'حياك الله في منصة ســاير',
         headerWidget: OnBoardingOne(controller: _pageController),
+        textStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
       ),
       SingleIntroScreen(
         imageHeightMultiple: 0,
@@ -42,13 +43,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         title: 'جمعناها',
         description: 'ما يحتاج تلف و تدور ساير جمعها لك بمكان واحد',
         headerWidget: OnBoardingTwo(controller: _pageController),
+        textStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
       ),
       SingleIntroScreen(
         imageHeightMultiple: 0,
         headerWidget: OnBoardingThree(controller: _pageController),
         slidePagePadding: EdgeInsets.all(0),
         title: 'محتااار؟',
-        description: "ساير يساعدك! حنا ندور لك السيارة اللي تناسبك",
+        description: "ســاير يساعدك! حنا ندور لك السيارة اللي تناسبك",
+        textStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
       ),
     ]);
   }
@@ -116,8 +119,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 alignment: Alignment.center,
                 children: [
                   SizedBox(
-                    width: 60.w,
-                    height: 60.h,
+                    width: 56.w,
+                    height: 56.h,
                     child: CircularProgressIndicator(
                       value: (currentPageIndex + 1) / pages.length,
                       strokeWidth: 2,

@@ -78,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                SizedBox(height: AppSizes.spaceBtwInputFields.h),
                 FindCarService(),
                 SizedBox(height: AppSizes.spaceBtwInputFields.h),
                 CarOffersAndBrandCubitLisiner(),

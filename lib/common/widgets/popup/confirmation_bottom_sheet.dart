@@ -20,7 +20,7 @@ void showConfirmationBottomSheet(
     isScrollControlled: true,
     showDragHandle: true,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(10.r)),
     ),
     builder: (context) {
       return Padding(
@@ -110,7 +110,7 @@ void showConfirmationBottomSheet(
                                 ),
                                 decoration: BoxDecoration(
                                   color: statusData['backgroundColor'],
-                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderRadius: BorderRadius.circular(10.r),
                                 ),
                                 child: Text(
                                   statusData['statusText'],

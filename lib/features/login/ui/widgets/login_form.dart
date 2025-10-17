@@ -13,7 +13,6 @@ import 'package:sayer_app/common/widgets/popup/custom_popup.dart';
 import 'package:sayer_app/common/widgets/popup/show_popup.dart';
 import 'package:sayer_app/features/login/logic/login_cubit.dart';
 import 'package:sayer_app/features/login/ui/widgets/phone_validator.dart';
-import 'package:sayer_app/features/login/ui/widgets/visitor.dart';
 import '../../../../common/Networking/dio_factory.dart';
 
 class LoginForm extends StatefulWidget {
@@ -104,7 +103,6 @@ class LoginFormState extends State<LoginForm> {
               ),
               textAlign: TextAlign.start,
             ),
-            Visitor(isLoginEnabled: isLoginEnabled),
             SizedBox(height: AppSizes.spaceBtwSections.h / 2),
             SizedBox(
               width: double.infinity,

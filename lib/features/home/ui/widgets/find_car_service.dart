@@ -19,6 +19,9 @@ class FindCarService extends StatelessWidget {
             backgroundColor: Colors.transparent,
             useRootNavigator: true,
             context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10.r)),
+            ),
             isScrollControlled: true,
             builder: (BuildContext context) {
               return Padding(

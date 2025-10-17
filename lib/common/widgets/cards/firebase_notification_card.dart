@@ -77,7 +77,7 @@ class _FireBaeNotificationCardState extends State<FireBaeNotificationCard>
                     child: RoundedImage(
                       backgroundColor: Colors.transparent,
                       fit: BoxFit.fill,
-                      imagmeUrl: "assets/images/Sayer_Logo.png",
+                      imageUrl: "assets/images/Sayer_Logo.png",
                       isNetworkImage: false,
                       applyImageRadius: true,
                     ),
@@ -186,7 +186,7 @@ class test extends StatelessWidget {
                         child: RoundedImage(
                           backgroundColor: Colors.transparent,
                           fit: BoxFit.fill,
-                          imagmeUrl: "assets/images/Sayer_Logo.png",
+                          imageUrl: "assets/images/Sayer_Logo.png",
                           isNetworkImage: false,
                           applyImageRadius: true,
                         ),

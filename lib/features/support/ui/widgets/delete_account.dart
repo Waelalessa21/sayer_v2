@@ -12,7 +12,10 @@ class DeleteAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.lightGrey,
+      decoration: BoxDecoration(
+        color: AppColors.lightGrey,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10.r)),
+      ),
       padding: EdgeInsets.all(AppSizes.spaceBtwSections.sp),
       child: Column(
         mainAxisSize: MainAxisSize.min,

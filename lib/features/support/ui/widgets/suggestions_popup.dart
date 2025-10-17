@@ -35,7 +35,7 @@ class CarSuggestionOptions extends StatelessWidget {
             color: isUsed ? AppColors.primary : borderColor,
             width: 1.5,
           ),
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(10.r),
           color: isUsed
               ? AppColors.primary.withOpacity(0.1)
               : Colors.transparent,

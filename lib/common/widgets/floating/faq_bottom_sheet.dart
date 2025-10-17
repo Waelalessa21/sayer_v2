@@ -88,7 +88,10 @@ class FaqBottomSheetState extends State<FaqBottomSheet> {
               MediaQuery.of(context).viewInsets.bottom + AppSizes.defaultSpace,
         ),
         child: Container(
-          decoration: BoxDecoration(color: AppColors.light),
+          decoration: BoxDecoration(
+            color: AppColors.light,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10.r)),
+          ),
           child: Column(
             children: [
               FaqHeader(qusation: true),

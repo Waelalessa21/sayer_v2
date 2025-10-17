@@ -53,23 +53,11 @@ class SuggestionsOptions extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primary.withOpacity(0.2),
-                      blurRadius: 12,
-                      offset: Offset(-1, 1),
-                    ),
-                  ],
-                  shape: BoxShape.circle,
-                ),
-                child: CircleAvatar(
-                  radius: 20.r,
-                  backgroundColor: Color(0xFF0DFE0F2).withOpacity(0.1),
-                  child: ClipOval(
-                    child: Image.asset(iconPath, width: 25, height: 25),
-                  ),
+              CircleAvatar(
+                radius: 10.r,
+                backgroundColor: Color(0xFF0DFE0F2).withOpacity(0.1),
+                child: ClipOval(
+                  child: Image.asset(iconPath, width: 25, height: 25),
                 ),
               ),
               SizedBox(width: 10.w),

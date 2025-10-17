@@ -27,51 +27,49 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    style: IconButton.styleFrom(
-                      splashFactory: NoSplash.splashFactory,
-                      overlayColor: Colors.transparent,
-                    ),
-                    onPressed: leadingOnPressed,
-                    icon: Icon(
-                      leadingIcon ?? Icons.menu,
-                      color: Colors.white,
-                      size: 28.sp,
-                    ),
+            SizedBox(height: 8.0.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  style: IconButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
+                    overlayColor: Colors.transparent,
                   ),
-                  IconButton(
-                    style: IconButton.styleFrom(
-                      splashFactory: NoSplash.splashFactory,
-                      overlayColor: Colors.transparent,
-                    ),
-                    onPressed: () {
-                      if (isLoggedInUser) {
-                        context.pushNamed(Routes.search);
-                      } else {
-                        showGuestToastMessage(
-                          context,
-                          "assets/icons/suggestion.png",
-                          "الوصول لمميزات ساير",
-                          "يرجى تسجيل الدخول للوصول لكافة المميزات",
-                        );
-                      }
-                    },
-                    icon: Icon(
-                      Iconsax.search_normal,
-                      color: Colors.white,
-                      size: 28.sp,
-                    ),
+                  onPressed: leadingOnPressed,
+                  icon: Icon(
+                    leadingIcon ?? Icons.menu,
+                    color: Colors.white,
+                    size: 28.sp,
                   ),
-                ],
-              ),
+                ),
+                IconButton(
+                  style: IconButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
+                    overlayColor: Colors.transparent,
+                  ),
+                  onPressed: () {
+                    if (isLoggedInUser) {
+                      context.pushNamed(Routes.search);
+                    } else {
+                      showGuestToastMessage(
+                        context,
+                        "assets/icons/suggestion.png",
+                        "الوصول لمميزات ساير",
+                        "يرجى تسجيل الدخول للوصول لكافة المميزات",
+                      );
+                    }
+                  },
+                  icon: Icon(
+                    Iconsax.search_normal,
+                    color: Colors.white,
+                    size: 28.sp,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 12.0.h),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -85,7 +83,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  SizedBox(height: 4.h),
                   GestureDetector(
                     onTap: _handleUserTap(context),
                     child: Text(
@@ -114,7 +112,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           useRootNavigator: true,
           backgroundColor: AppColors.lightGrey,
           context: context,
-          showDragHandle: false,
+          showDragHandle: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(10.r)),
           ),
@@ -143,5 +141,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(110);
+  Size get preferredSize => const Size.fromHeight(140);
 }

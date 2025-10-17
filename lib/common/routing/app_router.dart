@@ -19,6 +19,8 @@ import 'package:sayer_app/features/otp/logic/otp_cubit.dart';
 import 'package:sayer_app/features/otp/ui/otp_screen.dart';
 import 'package:sayer_app/features/search/ui/search_screen.dart';
 import 'package:sayer_app/features/services/ui/services_screen.dart';
+import 'package:sayer_app/features/carDetails/ui/car_details_screen.dart';
+import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -91,6 +93,20 @@ class AppRouter {
           builder: (_) => BlocProvider<CarOffersCubit>(
             create: (_) => getIt<CarOffersCubit>(),
             child: BrandOffersScreen(brandId: settings.arguments as int),
+          ),
+        );
+
+      case Routes.carDetails:
+        final carOfferData = settings.arguments as CarOfferData?;
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<FavoriteCubit>(
+                create: (_) => getIt<FavoriteCubit>(),
+              ),
+              BlocProvider<LeadsCubit>(create: (_) => getIt<LeadsCubit>()),
+            ],
+            child: CarDetailsScreen(carOfferData: carOfferData),
           ),
         );
 

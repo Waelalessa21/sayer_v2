@@ -48,7 +48,7 @@ class _EmptyOrdersState extends State<EmptyOrders> {
         decoration: BoxDecoration(
           color: AppColors.lightGrey,
           border: Border.all(color: Colors.grey.shade300, width: 1.w),
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(10.r),
         ),
         padding: EdgeInsets.all(24.0.sp),
         child: Column(

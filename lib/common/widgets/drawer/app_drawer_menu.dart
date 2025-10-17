@@ -69,7 +69,7 @@ class DrawerMenu extends StatelessWidget {
               icon: Iconsax.car,
               onPressed: () {
                 context.pop();
-                context.pushNamed('/showallbrand');
+                context.pushNamed(Routes.brands);
               },
             ),
             AppDrawerStyle(
