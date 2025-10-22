@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sayer_app/common/constants/app_sizes.dart';
 import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
-import 'package:sayer_app/features/offers/ui/widgets/offer_card.dart';
+import 'package:sayer_app/common/widgets/cards/offer_card.dart';
 import 'package:sayer_app/features/offers/ui/widgets/offer_filter.dart';
 
 class OffersAndFilters extends StatelessWidget {

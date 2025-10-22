@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sayer_app/common/constants/app_sizes.dart';
 import 'package:sayer_app/common/helpers/user_session.dart';
 import 'package:sayer_app/common/layout/app_default_bar.dart';
-import 'package:sayer_app/common/layout/app_gradient_color.dart';
+import 'package:sayer_app/common/layout/app_white_pattern.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
 import 'package:sayer_app/features/favourite/logic/favorite_cubit.dart';
 import 'package:sayer_app/features/favourite/ui/widgets/favourite_cubit_listener.dart';
@@ -33,7 +33,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AppGradientColor(
+    return AppWhitePattern(
       appBar: AppDefaultBar(showbackArrow: false),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppSizes.spaceBtwItems.sp),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sayer_app/common/constants/app_sizes.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
 import 'package:sayer_app/common/widgets/popup/show_toast_message.dart';
 import 'package:sayer_app/features/favourite/logic/favorite_cubit.dart';
 import 'package:sayer_app/features/favourite/logic/favorite_state.dart';
 import 'package:sayer_app/features/favourite/ui/widgets/empty_favourite.dart';
-import 'package:sayer_app/features/favourite/ui/widgets/favourite_card.dart';
 import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
+import 'package:sayer_app/common/widgets/cards/offer_card.dart';
 
 class FavouriteListener extends StatelessWidget {
   const FavouriteListener({super.key});
@@ -63,9 +64,36 @@ class FavouriteListener extends StatelessWidget {
                   return items.offerId;
                 })
                 .toList();
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.sp),
-              child: FavouriteCard(carOffers: favouriteCarOffers, isFav: true),
+            return Column(
+              children: [
+                SizedBox(height: AppSizes.iconLg.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "ســاير يجيبها لك",
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: AppColors.sSecondery,
+                    ),
+                  ),
+                ),
+                SizedBox(height: AppSizes.xs.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "أكد طلبك على السيارة المفضلة",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.sButtomColor,
+                    ),
+                  ),
+                ),
+                SizedBox(height: AppSizes.spaceBtwItems.h / 2.h),
+                Expanded(
+                  child: OfferCard(
+                    carOffers: favouriteCarOffers,
+                    scrollController: ScrollController(),
+                  ),
+                ),
+              ],
             );
           } else {
             return const SizedBox.shrink();
