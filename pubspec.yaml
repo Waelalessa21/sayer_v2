@@ -7,12 +7,9 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
-
-  
   flutter:
     sdk: flutter
 
-  
   flutter_localizations:
     sdk: flutter
 
@@ -78,7 +75,8 @@ dependencies:
   firebase_messaging: ^16.0.2
   #Provide a intl package {needed for the date formatting}
   intl: ^0.20.2
-
+  #This package is used to compare objects by value
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -93,7 +91,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
 
   assets:
     - assets/images/
@@ -120,4 +117,3 @@ flutter_native_splash:
   web: false
   fullscreen: true
   background_image: assets/images/splash.png
-

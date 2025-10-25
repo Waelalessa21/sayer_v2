@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 import 'package:sayer_app/common/constants/app_sizes.dart';
 import 'package:sayer_app/common/data/Cars/model/cars_model.dart';
+import 'package:sayer_app/common/helpers/app_product_text_title.dart';
 import 'package:sayer_app/common/helpers/product_price.dart';
 import 'package:sayer_app/common/helpers/user_session.dart';
+import 'package:sayer_app/common/routing/routes.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
 import 'package:sayer_app/common/widgets/custom_shape/app_container.dart';
-import 'package:sayer_app/common/helpers/app_product_text_title.dart';
 import 'package:sayer_app/common/widgets/custom_shape/circular_icon.dart';
 import 'package:sayer_app/common/widgets/custom_shape/rounded_image.dart';
 import 'package:sayer_app/common/widgets/popup/guest_notification.dart';
 import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
-import 'package:intl/intl.dart';
 
-///design of the card used in home screen to show the latest/newest offers
+/// Design of the card used in home screen to show the latest/newest offers
 class NewestOfferCard extends StatelessWidget {
   final String brandName, offerName;
   final String carName;
@@ -46,14 +47,21 @@ class NewestOfferCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        isLoggedInUser
-            ? print('carOfferData: $carOfferData')
-            : showGuestToastMessage(
-                context,
-                "assets/icons/question.png",
-                "جازت لك السيارة؟",
-                "الرجاء تسجيل الدخول للوصول لتفاصيل أكثر  ",
-              );
+        if (isLoggedInUser) {
+          Navigator.pushNamed(
+            context,
+            Routes.CarDetails,
+            arguments: carOfferData!.car,
+          );
+        } else {
+          // إذا المستخدم غير مسجل دخول
+          showGuestToastMessage(
+            context,
+            "assets/icons/question.png",
+            "جازت لك السيارة؟",
+            "الرجاء تسجيل الدخول للوصول لتفاصيل أكثر",
+          );
+        }
       },
       child: Stack(
         children: [
@@ -67,7 +75,7 @@ class NewestOfferCard extends StatelessWidget {
                       color: AppColors.darkGrey.withOpacity(0.2),
                       blurRadius: 20,
                       spreadRadius: 4,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                   height: 300.h,
@@ -90,20 +98,20 @@ class NewestOfferCard extends StatelessWidget {
                   color: AppColors.darkGrey.withOpacity(0.2),
                   blurRadius: 20,
                   spreadRadius: 4,
-                  offset: Offset(0, 1),
+                  offset: const Offset(0, 1),
                 ),
                 BoxShadow(
                   color: AppColors.darkGrey.withOpacity(0.2),
                   blurRadius: 20,
                   spreadRadius: 1,
-                  offset: Offset(4, 0),
+                  offset: const Offset(4, 0),
                 ),
                 if (offers)
                   BoxShadow(
                     color: Colors.blue.withOpacity(0.12),
                     blurRadius: 20,
                     spreadRadius: 0,
-                    offset: Offset(23, 0),
+                    offset: const Offset(23, 0),
                   ),
               ],
               width: 270.w,
@@ -215,7 +223,7 @@ class GradientText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShaderMask(
-      shaderCallback: (bounds) => LinearGradient(
+      shaderCallback: (bounds) => const LinearGradient(
         colors: [Colors.blue, Colors.lightGreen],
         tileMode: TileMode.decal,
       ).createShader(bounds),

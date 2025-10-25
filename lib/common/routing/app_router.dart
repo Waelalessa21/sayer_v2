@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as locator;
 import 'package:sayer_app/common/business/leads/cubit/leads_cubit.dart';
 import 'package:sayer_app/common/business/user/cubit/user_cubit.dart';
+import 'package:sayer_app/common/data/Cars/model/cars_model.dart';
+import 'package:sayer_app/common/data/car_details/cubit/car_details_cubit.dart';
 import 'package:sayer_app/common/di/dependency_injection.dart';
 import 'package:sayer_app/common/routing/routes.dart';
 import 'package:sayer_app/common/widgets/custom_shape/nav_bar.dart';
+import 'package:sayer_app/features/CarDetails/ui/CarDetails_screen.dart';
 import 'package:sayer_app/features/about_us/ui/about_us_screen.dart';
 import 'package:sayer_app/features/brand_offers/ui/brand_offers_screen.dart';
 import 'package:sayer_app/features/brands/ui/brands_screen.dart';
@@ -77,6 +81,15 @@ class AppRouter {
 
       case Routes.services:
         return MaterialPageRoute(builder: (_) => const ServicesScreen());
+
+      case Routes.CarDetails:
+        final carData = settings.arguments as CarData;
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+            providers: [BlocProvider(create: (_) => getIt<CarDetailsCubit>())],
+            child: CarDetailsScreen(carData: carData),
+          ),
+        );
 
       case Routes.brands:
         return MaterialPageRoute(
