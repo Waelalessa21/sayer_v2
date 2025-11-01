@@ -78,6 +78,9 @@ dependencies:
   #This package is used to compare objects by value
   equatable: ^2.0.5
 
+  #✅ GoRouter package for modern routing
+  go_router: ^14.2.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -96,6 +99,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lottie/
+    - assets/bank/
   
   fonts:
     - family: sayerNewFont

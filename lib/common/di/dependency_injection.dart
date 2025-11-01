@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 
 import 'package:sayer_app/common/business/leads/cubit/leads_cubit.dart';
 import 'package:sayer_app/common/business/user/cubit/user_cubit.dart';
-import 'package:sayer_app/common/data/car_details/repository/car_details_repo.dart';
 import 'package:sayer_app/common/data/leads/repo/leads_repo.dart';
 import 'package:sayer_app/common/data/leads/service/leads_service.dart';
 import 'package:sayer_app/common/data/user/repo/user_repo.dart';
@@ -29,9 +28,6 @@ import 'package:sayer_app/features/home/logic/car_offers_cubit.dart';
 import 'package:sayer_app/features/favourite/data/repo/favorite_repo.dart';
 import 'package:sayer_app/features/favourite/data/service/favorites_service.dart';
 import 'package:sayer_app/features/favourite/logic/favorite_cubit.dart';
-
-import 'package:sayer_app/common/data/car_details/service/car_details_service.dart';
-import 'package:sayer_app/common/data/car_details/cubit/car_details_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -99,14 +95,4 @@ void _registerAdditionalFeatures() {
     () => LeadsService(getIt<LeadRepo>()),
   );
   getIt.registerFactory<LeadsCubit>(() => LeadsCubit(getIt<LeadsService>()));
-
-  getIt.registerLazySingleton<CarDetailsRepo>(
-    () => CarDetailsRepo(getIt<Dio>()),
-  );
-  getIt.registerLazySingleton<CarDetailsService>(
-    () => CarDetailsService(getIt<CarDetailsRepo>()),
-  );
-  getIt.registerFactory<CarDetailsCubit>(
-    () => CarDetailsCubit(getIt<CarDetailsService>()),
-  );
 }

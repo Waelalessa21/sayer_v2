@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sayer_app/common/di/dependency_injection.dart';
 import 'package:sayer_app/common/helpers/shared_preference.dart';
 import 'package:sayer_app/common/helpers/user_session.dart';
 import 'package:sayer_app/common/networking/dio_factory.dart';
 import 'package:sayer_app/common/routing/app_router.dart';
-import 'package:sayer_app/common/routing/routes.dart';
 import 'package:sayer_app/firebase_options.dart';
 import 'package:sayer_app/sayer_app.dart';
 
@@ -25,12 +25,10 @@ void main() async {
 
   await setupGetIt();
   await checkIfLoggedInUser();
-  runApp(
-    SayerApp(
-      appRouter: AppRouter(),
-      initialRoute: isLoggedInUser ? Routes.home : Routes.onBoarding,
-    ),
-  );
+
+  final GoRouter router = createGoRouter(isLoggedInUser);
+
+  runApp(SayerApp(appRouter: router));
 }
 
 Future<void> checkIfLoggedInUser() async {

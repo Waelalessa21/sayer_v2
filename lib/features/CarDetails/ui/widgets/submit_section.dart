@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
 
 class SubmitSection extends StatelessWidget {
@@ -9,14 +10,14 @@ class SubmitSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      decoration: const BoxDecoration(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+      decoration: BoxDecoration(
         color: AppColors.white,
         boxShadow: [
           BoxShadow(
-            color: Color(0x1A000000),
-            blurRadius: 8,
-            offset: Offset(0, -2),
+            color: const Color(0x1A000000),
+            blurRadius: 8.r,
+            offset: Offset(0, -2.h),
           ),
         ],
       ),
@@ -26,7 +27,22 @@ class SubmitSection extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: onPressed,
-            child: const Text('إرسال الطلب'),
+            style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(vertical: 14.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              backgroundColor: AppColors.sButtomColor,
+            ),
+            child: Text(
+              'إرسال الطلب',
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontFamily: 'sayerNewFont',
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
       ),

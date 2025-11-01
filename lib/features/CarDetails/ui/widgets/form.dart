@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
+import 'package:sayer_app/features/CarDetails/ui/widgets/bank_selector.dart';
 
 class FormWidget extends StatefulWidget {
   const FormWidget({super.key});
@@ -16,6 +17,8 @@ class FormWidgetState extends State<FormWidget> {
   final bankFocus = FocusNode();
   final birthdateFocus = FocusNode();
 
+  final TextEditingController bankController = TextEditingController();
+
   @override
   void dispose() {
     salaryFocus.dispose();
@@ -23,7 +26,25 @@ class FormWidgetState extends State<FormWidget> {
     companyFocus.dispose();
     bankFocus.dispose();
     birthdateFocus.dispose();
+    bankController.dispose();
     super.dispose();
+  }
+
+  void _showBankSelectorDialog() {
+    FocusScope.of(context).unfocus();
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: BankSelector(
+          onBankSelected: (bankName) {
+            setState(() {
+              bankController.text = bankName;
+            });
+          },
+        ),
+      ),
+    );
   }
 
   @override
@@ -57,12 +78,27 @@ class FormWidgetState extends State<FormWidget> {
               nextFocus: bankFocus,
             ),
             SizedBox(height: 12.h),
-            _buildField(
-              label: 'اسم البنك',
-              hint: 'أدخل اسم البنك',
-              focusNode: bankFocus,
-              nextFocus: birthdateFocus,
+
+            // حقل اختيار البنك
+            GestureDetector(
+              onTap: _showBankSelectorDialog,
+              child: AbsorbPointer(
+                child: TextFormField(
+                  controller: bankController,
+                  focusNode: bankFocus,
+                  textDirection: TextDirection.rtl,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (_) =>
+                      FocusScope.of(context).requestFocus(birthdateFocus),
+                  decoration: _inputDecoration(
+                    label: 'اسم البنك',
+                    hint: 'اختر البنك',
+                    suffixIcon: const Icon(Icons.arrow_drop_down),
+                  ),
+                ),
+              ),
             ),
+
             SizedBox(height: 12.h),
             _buildField(
               label: 'تاريخ الميلاد',
@@ -98,21 +134,30 @@ class FormWidgetState extends State<FormWidget> {
         }
       },
       textDirection: TextDirection.rtl,
-      decoration: InputDecoration(
-        labelText: label,
-        hintText: hint,
-        labelStyle: TextStyle(color: AppColors.black, fontSize: 14.sp),
-        hintStyle: TextStyle(color: AppColors.darkGrey, fontSize: 13.sp),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.sButtomColor, width: 1.8),
-          borderRadius: BorderRadius.circular(8.r),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.grey, width: 1.0),
-          borderRadius: BorderRadius.circular(8.r),
-        ),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+      decoration: _inputDecoration(label: label, hint: hint),
+    );
+  }
+
+  InputDecoration _inputDecoration({
+    required String label,
+    required String hint,
+    Widget? suffixIcon,
+  }) {
+    return InputDecoration(
+      labelText: label,
+      hintText: hint,
+      suffixIcon: suffixIcon,
+      labelStyle: TextStyle(color: AppColors.black, fontSize: 14.sp),
+      hintStyle: TextStyle(color: AppColors.darkGrey, fontSize: 13.sp),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.sButtomColor, width: 1.8.w),
+        borderRadius: BorderRadius.circular(8.r),
       ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.grey, width: 1.0.w),
+        borderRadius: BorderRadius.circular(8.r),
+      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
     );
   }
 }

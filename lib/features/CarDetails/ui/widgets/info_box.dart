@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
 
 class InfoBox extends StatefulWidget {
@@ -18,26 +19,14 @@ class InfoBox extends StatefulWidget {
   static const Color iconColor = AppColors.textDarkBlue;
   static const Color borderColor = AppColors.grey;
 
-  static const TextStyle titleStyle = TextStyle(
-    fontSize: 11,
-    color: AppColors.darkGrey,
-    fontWeight: FontWeight.w500,
-  );
-
-  static const TextStyle valueStyle = TextStyle(
-    fontSize: 13.5,
-    color: AppColors.black,
-    fontWeight: FontWeight.bold,
-  );
-
   @override
   State<InfoBox> createState() => _InfoBoxState();
 }
 
 class _InfoBoxState extends State<InfoBox> with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<Offset> offsetAnimation;
-  late Animation<double> fadeAnimation;
+  late final AnimationController controller;
+  late final Animation<Offset> offsetAnimation;
+  late final Animation<double> fadeAnimation;
 
   @override
   void initState() {
@@ -73,27 +62,35 @@ class _InfoBoxState extends State<InfoBox> with SingleTickerProviderStateMixin {
       child: SlideTransition(
         position: offsetAnimation,
         child: Container(
-          width: 115,
-          height: 95,
+          width: 115.w,
+          height: 95.h,
           decoration: BoxDecoration(
             color: AppColors.white,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: InfoBox.borderColor),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(widget.icon, size: 22, color: InfoBox.iconColor),
-              const SizedBox(height: 6),
+              Icon(widget.icon, size: 22.sp, color: InfoBox.iconColor),
+              SizedBox(height: 6.h),
               Text(
                 widget.title,
-                style: InfoBox.titleStyle,
+                style: TextStyle(
+                  fontSize: 11.sp,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.darkGrey,
+                ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 2),
+              SizedBox(height: 4.h),
               Text(
                 widget.value,
-                style: InfoBox.valueStyle,
+                style: TextStyle(
+                  fontSize: 13.5.sp,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.black,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],

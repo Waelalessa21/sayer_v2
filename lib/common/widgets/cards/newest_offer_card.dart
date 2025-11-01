@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:sayer_app/common/constants/app_sizes.dart';
@@ -15,7 +16,6 @@ import 'package:sayer_app/common/widgets/custom_shape/rounded_image.dart';
 import 'package:sayer_app/common/widgets/popup/guest_notification.dart';
 import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
 
-/// Design of the card used in home screen to show the latest/newest offers
 class NewestOfferCard extends StatelessWidget {
   final String brandName, offerName;
   final String carName;
@@ -43,18 +43,13 @@ class NewestOfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool offers = offerName == '' ? false : true;
+    final bool offers = offerName != '';
 
     return GestureDetector(
       onTap: () {
         if (isLoggedInUser) {
-          Navigator.pushNamed(
-            context,
-            Routes.CarDetails,
-            arguments: carOfferData!.car,
-          );
+          context.push(Routes.CarDetails, extra: carOfferData);
         } else {
-          // إذا المستخدم غير مسجل دخول
           showGuestToastMessage(
             context,
             "assets/icons/question.png",

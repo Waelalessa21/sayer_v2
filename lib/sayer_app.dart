@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sayer_app/common/routing/app_router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sayer_app/common/theming/app_theme.dart';
 
 class SayerApp extends StatelessWidget {
-  final AppRouter appRouter;
-  final String initialRoute;
+  final GoRouter appRouter;
 
-  const SayerApp({
-    super.key,
-    required this.appRouter,
-    required this.initialRoute,
-  });
+  const SayerApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +15,7 @@ class SayerApp extends StatelessWidget {
       designSize: const Size(430, 932),
       minTextAdapt: true,
       builder: (context, child) {
-        return MaterialApp(
+        return MaterialApp.router(
           supportedLocales: const [Locale('ar')],
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
@@ -28,13 +23,11 @@ class SayerApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           title: "ساير",
-          onGenerateRoute: appRouter.generateRoute,
-          initialRoute: initialRoute,
           debugShowCheckedModeBanner: false,
           locale: const Locale('ar'),
           themeMode: ThemeMode.system,
-
           theme: AppTheme.lightTheme,
+          routerConfig: appRouter,
         );
       },
     );
