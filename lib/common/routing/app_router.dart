@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sayer_app/common/business/leads/cubit/leads_cubit.dart';
@@ -6,10 +5,10 @@ import 'package:sayer_app/common/business/user/cubit/user_cubit.dart';
 import 'package:sayer_app/common/di/dependency_injection.dart';
 import 'package:sayer_app/common/routing/routes.dart';
 import 'package:sayer_app/common/widgets/custom_shape/nav_bar.dart';
-import 'package:sayer_app/features/CarDetails/ui/CarDetails_screen.dart';
 import 'package:sayer_app/features/about_us/ui/about_us_screen.dart';
 import 'package:sayer_app/features/brand_offers/ui/brand_offers_screen.dart';
 import 'package:sayer_app/features/brands/ui/brands_screen.dart';
+import 'package:sayer_app/features/carDetails/ui/car_details_screen.dart';
 import 'package:sayer_app/features/favourite/logic/favorite_cubit.dart';
 import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
 import 'package:sayer_app/features/home/logic/brands_cubit.dart';
@@ -79,8 +78,14 @@ GoRouter createGoRouter(bool isLoggedInUser) {
       ),
       GoRoute(
         path: Routes.CarDetails,
-        builder: (context, state) =>
-            CarDetailsScreen(carOfferData: state.extra as CarOfferData),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<LeadsCubit>()),
+            BlocProvider(create: (_) => getIt<UserCubit>()),
+            BlocProvider(create: (_) => getIt<FavoriteCubit>()),
+          ],
+          child: CarDetailsScreen(carOfferData: state.extra as CarOfferData),
+        ),
       ),
       GoRoute(
         path: Routes.brands,

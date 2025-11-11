@@ -63,7 +63,9 @@ class NewestOfferCard extends StatelessWidget {
           if (offers)
             Positioned(
               child: Transform.rotate(
-                angle: 7.85.spMax,
+                angle: MediaQuery.of(context).size.height >= 900
+                    ? 7.67.sp
+                    : 7.85.spMax,
                 child: AppContainer(
                   boxShadow: [
                     BoxShadow(

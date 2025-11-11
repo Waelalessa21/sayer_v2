@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:sayer_app/common/constants/app_sizes.dart';
 import 'package:sayer_app/common/data/Cars/model/cars_model.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
@@ -21,6 +22,8 @@ class BodyPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey tabsSectionKey = GlobalKey();
+
     return DraggableScrollableSheet(
       initialChildSize: 0.52,
       minChildSize: 0.52,
@@ -62,7 +65,16 @@ class BodyPart extends StatelessWidget {
                     SizedBox(
                       height: 38.h,
                       child: ElevatedButton.icon(
-                        onPressed: () => tabController.animateTo(2),
+                        onPressed: () {
+                          tabController.animateTo(2);
+                          Future.delayed(const Duration(milliseconds: 100), () {
+                            Scrollable.ensureVisible(
+                              tabsSectionKey.currentContext!,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          });
+                        },
                         icon: Icon(Icons.calculate, size: 18.sp),
                         label: Text(
                           'طلب تمويل',
@@ -107,19 +119,19 @@ class BodyPart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InfoBox(
-                      icon: Icons.local_gas_station,
+                      icon: Iconsax.gas_station,
                       title: 'استهلاك الوقود',
                       value: carData.fuelEconomyRate?.toString() ?? 'غير محدد',
                       delay: const Duration(milliseconds: 0),
                     ),
                     InfoBox(
-                      icon: Icons.category,
+                      icon: Iconsax.category,
                       title: 'الفئة',
                       value: carData.carType ?? 'غير محددة',
                       delay: const Duration(milliseconds: 200),
                     ),
                     InfoBox(
-                      icon: Icons.date_range,
+                      icon: Iconsax.calendar,
                       title: 'سنة التصنيع',
                       value: carData.year?.toString() ?? 'غير متوفرة',
                       delay: const Duration(milliseconds: 400),
@@ -129,6 +141,7 @@ class BodyPart extends StatelessWidget {
 
                 SizedBox(height: 20.h),
                 SizedBox(
+                  key: tabsSectionKey,
                   height: 420.h,
                   child: TabsSection(
                     tabController: tabController,

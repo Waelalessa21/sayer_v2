@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:sayer_app/common/theming/app_colors.dart';
 import 'package:sayer_app/features/CarDetails/ui/widgets/bank_selector.dart';
+import 'package:sayer_app/features/CarDetails/ui/widgets/birth_date_selector.dart';
 
 class FormWidget extends StatefulWidget {
   const FormWidget({super.key});
@@ -18,6 +20,7 @@ class FormWidgetState extends State<FormWidget> {
   final birthdateFocus = FocusNode();
 
   final TextEditingController bankController = TextEditingController();
+  final TextEditingController birthdateController = TextEditingController();
 
   @override
   void dispose() {
@@ -27,6 +30,7 @@ class FormWidgetState extends State<FormWidget> {
     bankFocus.dispose();
     birthdateFocus.dispose();
     bankController.dispose();
+    birthdateController.dispose();
     super.dispose();
   }
 
@@ -40,6 +44,23 @@ class FormWidgetState extends State<FormWidget> {
           onBankSelected: (bankName) {
             setState(() {
               bankController.text = bankName;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  void _showBirthDateSelectorDialog() {
+    FocusScope.of(context).unfocus();
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: BirthDateSelector(
+          onDateSelected: (birthDate) {
+            setState(() {
+              birthdateController.text = birthDate;
             });
           },
         ),
@@ -93,19 +114,28 @@ class FormWidgetState extends State<FormWidget> {
                   decoration: _inputDecoration(
                     label: 'اسم البنك',
                     hint: 'اختر البنك',
-                    suffixIcon: const Icon(Icons.arrow_drop_down),
+                    suffixIcon: const Icon(Iconsax.card),
                   ),
                 ),
               ),
             ),
 
             SizedBox(height: 12.h),
-            _buildField(
-              label: 'تاريخ الميلاد',
-              hint: 'مثال: 1995-01-01',
-              keyboard: TextInputType.datetime,
-              focusNode: birthdateFocus,
-              nextFocus: null,
+            GestureDetector(
+              onTap: _showBirthDateSelectorDialog,
+              child: AbsorbPointer(
+                child: TextFormField(
+                  controller: birthdateController,
+                  focusNode: birthdateFocus,
+                  textDirection: TextDirection.rtl,
+                  textInputAction: TextInputAction.done,
+                  decoration: _inputDecoration(
+                    label: 'تاريخ الميلاد',
+                    hint: 'اختر تاريخ الميلاد',
+                    suffixIcon: const Icon(Iconsax.calendar),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

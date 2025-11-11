@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:sayer_app/common/layout/app_default_bar.dart';
 import 'package:sayer_app/common/layout/app_white_pattern.dart';
@@ -8,8 +9,15 @@ import 'package:sayer_app/features/home/data/model/car_offers_model.dart';
 
 class UpPart extends StatelessWidget {
   final CarOfferData offer;
+  final bool isAddFavorite;
+  final VoidCallback onFavoriteTap;
 
-  const UpPart({super.key, required this.offer});
+  const UpPart({
+    super.key,
+    required this.offer,
+    required this.isAddFavorite,
+    required this.onFavoriteTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +38,13 @@ class UpPart extends StatelessWidget {
           showbackArrow: true,
           arrowColor: AppColors.black,
           action: [
-            Icon(Icons.favorite_border, color: AppColors.black, size: 24.sp),
-            SizedBox(width: 12.w),
+            IconButton(
+              icon: Icon(
+                isAddFavorite ? Iconsax.heart5 : Iconsax.heart,
+                color: AppColors.sButtomColor,
+              ),
+              onPressed: onFavoriteTap,
+            ),
           ],
         ),
         child: Column(
