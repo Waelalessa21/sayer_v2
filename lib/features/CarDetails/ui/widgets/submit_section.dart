@@ -4,8 +4,13 @@ import 'package:sayer_app/common/theming/app_colors.dart';
 
 class SubmitSection extends StatelessWidget {
   final VoidCallback onPressed;
+  final String buttonText;
 
-  const SubmitSection({super.key, required this.onPressed});
+  const SubmitSection({
+    super.key,
+    required this.onPressed,
+    required this.buttonText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class SubmitSection extends StatelessWidget {
               backgroundColor: AppColors.sButtomColor,
             ),
             child: Text(
-              'إرسال الطلب',
+              buttonText,
               style: TextStyle(
                 fontSize: 16.sp,
                 fontFamily: 'sayerNewFont',

@@ -12,12 +12,14 @@ class BodyPart extends StatelessWidget {
   final CarData carData;
   final CarOfferData carOfferData;
   final TabController tabController;
+  final GlobalKey<FormState>? financeFormKey;
 
   const BodyPart({
     super.key,
     required this.carData,
     required this.carOfferData,
     required this.tabController,
+    this.financeFormKey,
   });
 
   @override
@@ -147,6 +149,7 @@ class BodyPart extends StatelessWidget {
                     tabController: tabController,
                     carData: carData,
                     carOfferData: carOfferData,
+                    financeFormKey: financeFormKey,
                   ),
                 ),
 

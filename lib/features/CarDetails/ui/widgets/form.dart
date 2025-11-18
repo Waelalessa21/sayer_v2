@@ -6,21 +6,28 @@ import 'package:sayer_app/features/CarDetails/ui/widgets/bank_selector.dart';
 import 'package:sayer_app/features/CarDetails/ui/widgets/birth_date_selector.dart';
 
 class FormWidget extends StatefulWidget {
-  const FormWidget({super.key});
+  final GlobalKey<FormState>? formKey;
+
+  const FormWidget({super.key, this.formKey});
 
   @override
   State<FormWidget> createState() => FormWidgetState();
 }
 
 class FormWidgetState extends State<FormWidget> {
+  GlobalKey<FormState> get formKey => widget.formKey ?? GlobalKey<FormState>();
+
+  final TextEditingController salaryController = TextEditingController();
+  final TextEditingController obligationController = TextEditingController();
+  final TextEditingController companyController = TextEditingController();
+  final TextEditingController bankController = TextEditingController();
+  final TextEditingController birthdateController = TextEditingController();
+
   final salaryFocus = FocusNode();
   final obligationFocus = FocusNode();
   final companyFocus = FocusNode();
   final bankFocus = FocusNode();
   final birthdateFocus = FocusNode();
-
-  final TextEditingController bankController = TextEditingController();
-  final TextEditingController birthdateController = TextEditingController();
 
   @override
   void dispose() {
@@ -29,9 +36,19 @@ class FormWidgetState extends State<FormWidget> {
     companyFocus.dispose();
     bankFocus.dispose();
     birthdateFocus.dispose();
+
+    salaryController.dispose();
+    obligationController.dispose();
+    companyController.dispose();
     bankController.dispose();
     birthdateController.dispose();
     super.dispose();
+  }
+
+  static bool isFormValid(FormWidgetState state) {
+    return state.formKey.currentState?.validate() == true &&
+        state.bankController.text.isNotEmpty &&
+        state.birthdateController.text.isNotEmpty;
   }
 
   void _showBankSelectorDialog() {
@@ -72,72 +89,78 @@ class FormWidgetState extends State<FormWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          children: [
-            _buildField(
-              label: 'الراتب الشهري',
-              hint: 'أدخل الراتب الشهري',
-              keyboard: TextInputType.number,
-              focusNode: salaryFocus,
-              nextFocus: obligationFocus,
-            ),
-            SizedBox(height: 12.h),
-            _buildField(
-              label: 'الالتزامات الشهرية',
-              hint: 'أدخل الالتزامات',
-              keyboard: TextInputType.number,
-              focusNode: obligationFocus,
-              nextFocus: companyFocus,
-            ),
-            SizedBox(height: 12.h),
-            _buildField(
-              label: 'اسم الشركة',
-              hint: 'أدخل اسم الشركة',
-              focusNode: companyFocus,
-              nextFocus: bankFocus,
-            ),
-            SizedBox(height: 12.h),
+      child: Form(
+        key: formKey,
+        child: Padding(
+          padding: EdgeInsets.all(16.w),
+          child: Column(
+            children: [
+              _buildField(
+                label: 'الراتب الشهري',
+                hint: 'أدخل الراتب الشهري',
+                keyboard: TextInputType.number,
+                focusNode: salaryFocus,
+                nextFocus: obligationFocus,
+                controller: salaryController,
+              ),
+              SizedBox(height: 12.h),
+              _buildField(
+                label: 'الالتزامات الشهرية',
+                hint: 'أدخل الالتزامات',
+                keyboard: TextInputType.number,
+                focusNode: obligationFocus,
+                nextFocus: companyFocus,
+                controller: obligationController,
+              ),
+              SizedBox(height: 12.h),
+              _buildField(
+                label: 'اسم الشركة',
+                hint: 'أدخل اسم الشركة',
+                focusNode: companyFocus,
+                nextFocus: bankFocus,
+                controller: companyController,
+              ),
+              SizedBox(height: 12.h),
 
-            // حقل اختيار البنك
-            GestureDetector(
-              onTap: _showBankSelectorDialog,
-              child: AbsorbPointer(
-                child: TextFormField(
-                  controller: bankController,
-                  focusNode: bankFocus,
-                  textDirection: TextDirection.rtl,
-                  textInputAction: TextInputAction.next,
-                  onFieldSubmitted: (_) =>
-                      FocusScope.of(context).requestFocus(birthdateFocus),
-                  decoration: _inputDecoration(
-                    label: 'اسم البنك',
-                    hint: 'اختر البنك',
-                    suffixIcon: const Icon(Iconsax.card),
+              GestureDetector(
+                onTap: _showBankSelectorDialog,
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    controller: bankController,
+                    focusNode: bankFocus,
+                    textDirection: TextDirection.rtl,
+                    validator: (value) =>
+                        value == null || value.isEmpty ? 'مطلوب' : null,
+                    decoration: _inputDecoration(
+                      label: 'اسم البنك',
+                      hint: 'اختر البنك',
+                      suffixIcon: const Icon(Iconsax.card),
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 12.h),
-            GestureDetector(
-              onTap: _showBirthDateSelectorDialog,
-              child: AbsorbPointer(
-                child: TextFormField(
-                  controller: birthdateController,
-                  focusNode: birthdateFocus,
-                  textDirection: TextDirection.rtl,
-                  textInputAction: TextInputAction.done,
-                  decoration: _inputDecoration(
-                    label: 'تاريخ الميلاد',
-                    hint: 'اختر تاريخ الميلاد',
-                    suffixIcon: const Icon(Iconsax.calendar),
+              SizedBox(height: 12.h),
+
+              GestureDetector(
+                onTap: _showBirthDateSelectorDialog,
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    controller: birthdateController,
+                    focusNode: birthdateFocus,
+                    textDirection: TextDirection.rtl,
+                    validator: (value) =>
+                        value == null || value.isEmpty ? 'مطلوب' : null,
+                    decoration: _inputDecoration(
+                      label: 'تاريخ الميلاد',
+                      hint: 'اختر تاريخ الميلاد',
+                      suffixIcon: const Icon(Iconsax.calendar),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -147,15 +170,19 @@ class FormWidgetState extends State<FormWidget> {
     required String label,
     required String hint,
     required FocusNode focusNode,
+    required TextEditingController controller,
     FocusNode? nextFocus,
     TextInputType keyboard = TextInputType.text,
   }) {
     return TextFormField(
+      controller: controller,
       focusNode: focusNode,
       keyboardType: keyboard,
       textInputAction: nextFocus != null
           ? TextInputAction.next
           : TextInputAction.done,
+      validator: (value) => value == null || value.isEmpty ? 'مطلوب' : null,
+      textDirection: TextDirection.rtl,
       onFieldSubmitted: (_) {
         if (nextFocus != null) {
           FocusScope.of(context).requestFocus(nextFocus);
@@ -163,7 +190,6 @@ class FormWidgetState extends State<FormWidget> {
           FocusScope.of(context).unfocus();
         }
       },
-      textDirection: TextDirection.rtl,
       decoration: _inputDecoration(label: label, hint: hint),
     );
   }

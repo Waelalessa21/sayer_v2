@@ -21,6 +21,8 @@ class _CarDetailsScreenState extends State<CarDetailsScreen>
   late TabController tabController;
   bool isAddFavorite = false;
 
+  final GlobalKey<FormState> financeFormKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -57,8 +59,13 @@ class _CarDetailsScreenState extends State<CarDetailsScreen>
     );
   }
 
-  Future<void> _submitLead() async {
-    await CarDetailsHelpers.submitLead(context, widget.carOfferData);
+  Future<void> _submitLead(bool isFinance) async {
+    await CarDetailsHelpers.submitLead(
+      context,
+      widget.carOfferData,
+      isFinance: isFinance,
+      formKey: isFinance ? financeFormKey : null,
+    );
   }
 
   @override
@@ -78,10 +85,21 @@ class _CarDetailsScreenState extends State<CarDetailsScreen>
             carData: carData,
             carOfferData: widget.carOfferData,
             tabController: tabController,
+            financeFormKey: financeFormKey,
           ),
         ],
       ),
-      bottomNavigationBar: SubmitSection(onPressed: _submitLead),
+      bottomNavigationBar: ValueListenableBuilder(
+        valueListenable: tabController.animation!,
+        builder: (context, _, __) {
+          final isFinanceTab = tabController.index == 2;
+
+          return SubmitSection(
+            onPressed: () => _submitLead(isFinanceTab),
+            buttonText: isFinanceTab ? 'إرسال طلب تمويل' : 'إرسال الطلب',
+          );
+        },
+      ),
     );
   }
 }

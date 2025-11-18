@@ -10,12 +10,14 @@ class TabsSection extends StatelessWidget {
   final TabController tabController;
   final CarData carData;
   final CarOfferData carOfferData;
+  final GlobalKey<FormState>? financeFormKey;
 
   const TabsSection({
     super.key,
     required this.tabController,
     required this.carData,
     required this.carOfferData,
+    this.financeFormKey,
   });
 
   @override
@@ -193,7 +195,7 @@ class TabsSection extends StatelessWidget {
 
               SingleChildScrollView(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                child: const FormWidget(),
+                child: FormWidget(formKey: financeFormKey),
               ),
             ],
           ),

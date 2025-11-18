@@ -1,4 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sayer_app/common/business/leads/cubit/leads_cubit.dart';
@@ -70,10 +69,22 @@ class CarDetailsHelpers {
 
   static Future<void> submitLead(
     BuildContext context,
-    CarOfferData carOfferData,
-  ) async {
+    CarOfferData carOfferData, {
+    bool isFinance = false,
+    GlobalKey<FormState>? formKey,
+  }) async {
     if (userName.isEmpty) {
       await showProfileBottomSheet(context);
+      return;
+    }
+
+    if (isFinance && (formKey == null || !formKey.currentState!.validate())) {
+      showToastMessage(
+        context,
+        "يجب تعبئة جميع الحقول",
+        "assets/icons/question.png",
+        isError: true,
+      );
       return;
     }
 
@@ -104,11 +115,6 @@ class CarDetailsHelpers {
       return;
     }
 
-    final bool hasFinancing =
-        carOfferData.monthlyPayment > 0 &&
-        carOfferData.financedBy != null &&
-        carOfferData.financeLength != null;
-
     final bool? confirmed = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
@@ -116,11 +122,9 @@ class CarDetailsHelpers {
         return Dialog(
           backgroundColor: Colors.transparent,
           child: ConfirmationContainer(
-            title: hasFinancing
-                ? 'تأكيد إرسال الطلب'
-                : 'طلب السيارة بسعر الكاش 💵',
-            subtitle: hasFinancing
-                ? 'عند إرسال الطلب سيتم التواصل معك لإكمال إجراءات الطلب'
+            title: isFinance ? "طلب تمويل 💳" : 'طلب السيارة بسعر الكاش 💵',
+            subtitle: isFinance
+                ? " تأكيدك يعني؟ راح نتواصل معك ونعطيك العرض الأفضل"
                 : 'السعر الموضوع للسيارة هو نقداً فقط',
             cancelButtonText: 'هوّنت',
             confirmButtonText: 'تأكيد',
@@ -136,7 +140,7 @@ class CarDetailsHelpers {
 
       showToastMessage(
         context,
-        "تم إرسال الطلب بنجاح",
+        isFinance ? "تم إرسال طلب التمويل بنجاح" : "تم إرسال الطلب بنجاح",
         "assets/icons/money.png",
         isError: false,
       );
